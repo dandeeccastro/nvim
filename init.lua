@@ -1,3 +1,5 @@
+require("plugins")
+
 vim.o.background = "dark"
 vim.g.vscode_italic_comment = 1
 
@@ -16,13 +18,17 @@ set mouse=a
 colorscheme vscode
 
 imap jk <Esc>
+
+nmap <Leader>w :w<CR>
+nmap <Leader>q :q<CR>
 nmap <Leader>e :NvimTreeFocus<CR>
-nmap <Leader>ff <cmd>Telescope find_files<CR>
-nmap <Leader>fs <cmd>Telescope live_grep<CR>
-nmap <S-l> :BufferLineCycleNext<CR>
-nmap <S-h> :BufferLineCyclePrev<CR>
+
+nmap <Leader>ff :Telescope find_files<CR>
+nmap <Leader>fs :Telescope live_grep<CR>
+
+nmap <Leader>c :lua MiniBufremove.delete()<CR>
+nmap <S-l> :bnext<CR>
+nmap <S-h> :bprev<CR>
 nmap <C-h> <C-W>h
 nmap <C-l> <C-W>l
 ]])
-
-require("plugins")

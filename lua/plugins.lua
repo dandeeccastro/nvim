@@ -1,4 +1,4 @@
-local fn = vim.fn 
+local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -8,17 +8,17 @@ end
 return require("packer").startup(function()
 	use "wbthomason/packer.nvim"
 	use "Mofiqul/vscode.nvim"
-	use {
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "vscode",
-				}
-			})
-		end
-	}
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("telescope").setup({
+        defaults = {
+          generic_sorter = require('mini.fuzzy').get_telescope_sorter
+        }
+      })
+    end
+  }
 
 	use {
 		"nvim-treesitter/nvim-treesitter",
@@ -59,33 +59,10 @@ return require("packer").startup(function()
 	}
 
 	use {
-		'akinsho/bufferline.nvim',
-		tag = "v2.*",
-		requires = 'kyazdani42/nvim-web-devicons',
-		config = function()
-			require("bufferline").setup()
-		end
-	}
-
-	use {
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
 		end,
-	}
-
-	use {
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end
-	}
-
-	use {
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup()
-		end
 	}
 
 	use {
@@ -160,40 +137,43 @@ return require("packer").startup(function()
 			require("nvim-tree").setup()
 		end,
     tag = 'nightly'
-}
-
-	use {
-		"nvim-telescope/telescope.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("telescope").setup({})
-		end
-	}
+  }
 
   use {
     "echasnovski/mini.nvim",
     branch = "stable", 
     config = function()
+      require("mini.bufremove").setup{}
       require("mini.completion").setup{}
+      require("mini.surround").setup{}
+      require("mini.comment").setup{}
+      require("mini.fuzzy").setup{}
+      require("mini.pairs").setup{}
+      require("mini.statusline").setup{}
+      require("mini.tabline").setup{}
     end
   }
 
- use {
-    "williamboman/nvim-lsp-installer",
-    config = function()
-      require"nvim-lsp-installer".setup{}
-    end
-  } 
-
   use {
     "neovim/nvim-lspconfig",
-    after = "nvim-lsp-installer", 
     config = function()
       require"lspconfig".sumneko_lua.setup{}
       require"lspconfig".eslint.setup{}
       require"lspconfig".tsserver.setup{}
       require"lspconfig".pyright.setup{}
     end
+  }
+
+  use {
+    "williamboman/nvim-lsp-installer",
+    config = function()
+      require"nvim-lsp-installer".setup{}
+    end
+  }
+
+  use {
+    "ellisonleao/glow.nvim",
+    branch = "main",
   }
 
 	if packer_bootstrap then
