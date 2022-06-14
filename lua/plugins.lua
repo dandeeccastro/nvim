@@ -88,8 +88,8 @@ return require("packer").startup(function()
 				},
 				modes = {
 					ataraxis = {
-						left_padding = 32,
-						right_padding = 32,
+						left_padding = 16,
+						right_padding = 16,
 						top_padding = 1,
 						bottom_padding = 1,
 						ideal_writing_area_width = {0},
@@ -115,9 +115,7 @@ return require("packer").startup(function()
 					},
 				},
 				integrations = {
-					gitsigns = false,
-					nvim_bufferline = false,
-					lualine = false,
+					gitsigns = true,
 				},
 				misc = {
 					on_off_commands = false,
