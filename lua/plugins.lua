@@ -7,7 +7,7 @@ end
 
 return require("packer").startup(function()
 	use "wbthomason/packer.nvim"
-	use "Mofiqul/vscode.nvim"
+  use "Mofiqul/vscode.nvim"
   use {
     "nvim-telescope/telescope.nvim",
     requires = "nvim-lua/plenary.nvim",
@@ -66,67 +66,6 @@ return require("packer").startup(function()
 	}
 
 	use {
-		"Pocco81/TrueZen.nvim",
-		config = function()
-			require("true-zen").setup({
-				ui = {
-					bottom = {
-						laststatus = 0,
-						ruler = false,
-						showmode = false,
-						showcmd = false,
-						cmdheight = 1,
-					},
-					top = {
-						showtabline = 0,
-					},
-					left = {
-						number = false,
-						relativenumber = false,
-						signcolumn = "no",
-					},
-				},
-				modes = {
-					ataraxis = {
-						left_padding = 16,
-						right_padding = 16,
-						top_padding = 1,
-						bottom_padding = 1,
-						ideal_writing_area_width = {0},
-						auto_padding = true,
-						keep_default_fold_fillchars = true,
-						custom_bg = {"none", ""},
-						bg_configuration = true,
-						quit = "untoggle",
-						ignore_floating_windows = true,
-						affected_higroups = {
-							NonText = true,
-							FoldColumn = true,
-							ColorColumn = true,
-							VertSplit = true,
-							StatusLine = true,
-							StatusLineNC = true,
-							SignColumn = true,
-						},
-					},
-					focus = {
-						margin_of_error = 5,
-						focus_method = "experimental"
-					},
-				},
-				integrations = {
-					gitsigns = true,
-				},
-				misc = {
-					on_off_commands = false,
-					ui_elements_commands = false,
-					cursor_by_mode = false,
-				}
-			})
-		end
-	}
-
-	use {
     'kyazdani42/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons',
@@ -141,6 +80,11 @@ return require("packer").startup(function()
     "echasnovski/mini.nvim",
     branch = "stable", 
     config = function()
+      -- require("mini.base16").setup{
+      --   palette = require("mini.base16").mini_palette('#112641', '#e2e98f', 75),
+      --   name = 'minischeme',
+      --   use_cterm = true,
+      -- }
       require("mini.bufremove").setup{}
       require("mini.completion").setup{}
       require("mini.surround").setup{}
@@ -159,6 +103,7 @@ return require("packer").startup(function()
       require"lspconfig".eslint.setup{}
       require"lspconfig".tsserver.setup{}
       require"lspconfig".pyright.setup{}
+      require"lspconfig".clangd.setup{}
     end
   }
 

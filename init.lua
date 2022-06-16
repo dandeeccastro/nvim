@@ -26,8 +26,6 @@ nmap <Leader>e :NvimTreeFocus<CR>
 nmap <Leader>ff :Telescope find_files<CR>
 nmap <Leader>fs :Telescope live_grep<CR>
 
-nmap <Leader>zz :TZAtaraxis<CR>
-
 nmap <Leader>c :lua MiniBufremove.delete()<CR>
 nmap <S-l> :bnext<CR>
 nmap <S-h> :bprev<CR>
